@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   swap_operation.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kenzo <kenzo@student.42.fr>                +#+  +:+       +#+        */
+/*   By: kmailleu <kmailleu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 16:38:49 by kenzo             #+#    #+#             */
-/*   Updated: 2024/03/27 14:37:16 by kenzo            ###   ########.fr       */
+/*   Updated: 2024/03/28 15:52:49 by kmailleu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ int	ss(t_stack *a, t_stack *b)
 	if (swap(a) == -1 || swap(b) == -1)
 		return (-1);
 	ft_putendl_fd("ss", 1);
+	return (1);
 }
 
 

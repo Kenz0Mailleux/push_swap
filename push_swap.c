@@ -3,31 +3,45 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kenzo <kenzo@student.42.fr>                +#+  +:+       +#+        */
+/*   By: kmailleu <kmailleu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 15:09:53 by kenzo             #+#    #+#             */
-/*   Updated: 2024/03/27 14:42:59 by kenzo            ###   ########.fr       */
+/*   Updated: 2024/04/15 19:00:16 by kmailleu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_stack	*init_stack(int *nbr_list)
+int	str_len_ptr(char **nbr_list)
+{
+	int	i;
+
+	i = 0;
+	while(nbr_list[i])
+		i++;
+	return (i);
+}
+
+
+t_stack	*init_stack(char **nbr_list)
 {
 	t_stack *head;
 	t_stack *current;
 	t_stack *node;
 	int i;
+	int	j;
 
 	head = NULL;
 	current = NULL;
-	i = 0;
-	while (nbr_list[i] != -1)
+	i = str_len_ptr(nbr_list)-1;
+	j = 0;
+
+	while (i > -1)
 	{
 		node = malloc(sizeof(t_stack));
 		if (node == NULL)
 			return NULL;
-		node->value = nbr_list[i];
+		node->value = ft_atoi(nbr_list[i]);
 		node->index = i;
 		node->next = NULL;
 		node->previous = NULL;
@@ -39,63 +53,56 @@ t_stack	*init_stack(int *nbr_list)
 			node->previous = current;
 		}
 		current = node;
-		i++;
+		i--;
 	}
 	return (head);
 }
 
 
 
-int	*parse_one_input(int argc, char *argv)
+char	**parse_one_input(int argc, char *argv)
 {
 	char	**str;
-	int		*nbr_list;
 	int		i;
 	int		j;
 
 	i = 0;
 	j = 0;
+	argc = 0;
 	str = ft_split(argv, ' ');
+
 	if (str == NULL)
 		return (NULL);
-	while (str[i] != NULL)
-		i++;
-	nbr_list = malloc(sizeof(int) * (i + 1));
-	// if (nbr_list == NULL);
-	// 	return (NULL);
-	i = 0;
-	while (str[i] != NULL)
-		nbr_list[j++] = ft_atoi(str[i++]);
-	nbr_list[j] = -1;
-	free(str);
-	return (nbr_list);
+	//tri splited
+	return (str);
 }
 
-int *parse_several_input(int argc, char **argv)
+char **parse_several_input(int argc, char **argv)
 {
-	int		*nbr_list;
+	char		**nbr_list;
 	int		i;
 	int		j;
 
 	i = 1;
 	j = 0;
 
-	nbr_list = malloc(sizeof(int) * argc); //argc n'a pas besoin de +1
-	// if (nbr_list == NULL);
-	// 	return (NULL);
+	nbr_list = malloc(sizeof(char *) * (argc + 1)); //argc n'a pas besoin de +1
+	if (nbr_list == NULL)
+	 	return (NULL);
 	while (i < argc)
-		nbr_list[j++] = ft_atoi(argv[i++]);
-	nbr_list[j] = -1;
+		nbr_list[j++] = argv[i++];
 	return (nbr_list);
 	
 }
 
 int	check_input(int argc, char **argv)
 {
+	argc = 0;
+	argv = NULL;
 	return (0);
 }
 
-int	*parse_input(int argc, char **argv)
+char	**parse_input(int argc, char **argv)
 {
 	// if	(!check_input(argc, argv))
 	// 	return (NULL);
@@ -112,20 +119,30 @@ int	main(int argc, char *argv[])
 {
 	t_stack *a;
 	t_stack *b;
-	int		*nbr_list;
+	char	**nbr_list;
 
 	if (argc < 2)
+	{
+		printf("need at least one nbr");
 		return (0);
+	}
 	nbr_list = parse_input(argc, argv); //check and stock argv in a list
 	if (nbr_list == NULL)
 		return (0);
 	a = init_stack(nbr_list);
-	free(nbr_list);
-	swap(a);
-	int	i = 0;
+	b = malloc(sizeof(t_stack));
+	b->value = 0;
+	b->next = NULL;
+	printf("Stack A \n");
 	while (a != NULL)
 	{
 		printf("%d \n", a->value);
 		a = a->next;
+	}
+	printf("Stack B \n");
+	while (b != NULL)
+	{
+		printf("%d \n", b->value);
+		b = b->next;
 	}
 }

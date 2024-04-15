@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kenzo <kenzo@student.42.fr>                +#+  +:+       +#+        */
+/*   By: kmailleu <kmailleu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 16:40:03 by kenzo             #+#    #+#             */
-/*   Updated: 2024/03/27 15:27:18 by kenzo            ###   ########.fr       */
+/*   Updated: 2024/04/15 18:26:10 by kmailleu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,10 @@ typedef struct s_stack
 	struct s_stack *next;
 }			t_stack;
 
-int	*parse_input(int argc, char **argv);
-int *parse_several_input(int argc, char **argv);
-int	*parse_one_input(int argc, char *argv);
-t_stack	*init_stack(int *nbr_list);
+char	**parse_input(int argc, char **argv);
+char	**parse_several_input(int argc, char **argv);
+char	**parse_one_input(int argc, char *argv);
+t_stack	*init_stack(char **nbr_list);
 
 
 
@@ -36,4 +36,6 @@ int	sb(t_stack *b);
 int	ss(t_stack *a, t_stack *b);
 
 int	push(t_stack *from_stack, t_stack *to_stack);
+int	pa(t_stack *a, t_stack *b);
+
 #endif
