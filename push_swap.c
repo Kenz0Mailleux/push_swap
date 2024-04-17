@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kmailleu <kmailleu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kenzo <kenzo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 15:09:53 by kenzo             #+#    #+#             */
-/*   Updated: 2024/04/15 19:00:16 by kmailleu         ###   ########.fr       */
+/*   Updated: 2024/04/16 17:49:59 by kenzo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,10 @@ t_stack	*init_stack(char **nbr_list)
 	t_stack *current;
 	t_stack *node;
 	int i;
-	int	j;
 
 	head = NULL;
 	current = NULL;
 	i = str_len_ptr(nbr_list)-1;
-	j = 0;
 
 	while (i > -1)
 	{
@@ -60,15 +58,9 @@ t_stack	*init_stack(char **nbr_list)
 
 
 
-char	**parse_one_input(int argc, char *argv)
+char	**parse_one_input(char *argv)
 {
 	char	**str;
-	int		i;
-	int		j;
-
-	i = 0;
-	j = 0;
-	argc = 0;
 	str = ft_split(argv, ' ');
 
 	if (str == NULL)
@@ -95,12 +87,12 @@ char **parse_several_input(int argc, char **argv)
 	
 }
 
-int	check_input(int argc, char **argv)
-{
-	argc = 0;
-	argv = NULL;
-	return (0);
-}
+// int	check_input(int argc, char **argv)
+// {
+// 	argc = 0;
+// 	argv = NULL;
+// 	return (0);
+// }
 
 char	**parse_input(int argc, char **argv)
 {
@@ -108,7 +100,7 @@ char	**parse_input(int argc, char **argv)
 	// 	return (NULL);
 	printf("nbr of input : %d \n", argc);
 	if (argc == 2)
-		return (parse_one_input(argc, argv[1]));
+		return (parse_one_input(argv[1]));
 	else
 		return (parse_several_input(argc, argv));
 }
@@ -133,6 +125,7 @@ int	main(int argc, char *argv[])
 	b = malloc(sizeof(t_stack));
 	b->value = 0;
 	b->next = NULL;
+	pa(a, b);
 	printf("Stack A \n");
 	while (a != NULL)
 	{

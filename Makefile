@@ -8,7 +8,7 @@ SRCS =  push_operation.c \
 OBJS = ${SRCS:.c=.o}
 
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -Iincludes
+CFLAGS = -Wall -Wextra #-Werror -Iincludes
 
 RM = rm -rf
 

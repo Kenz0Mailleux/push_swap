@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   swap_operation.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kmailleu <kmailleu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kenzo <kenzo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 16:38:49 by kenzo             #+#    #+#             */
-/*   Updated: 2024/03/28 15:52:49 by kmailleu         ###   ########.fr       */
+/*   Updated: 2024/04/16 18:12:00 by kenzo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	swap(t_stack *stack)
+static	int swap(t_stack *stack)
 {
 	t_stack	*head;
 	t_stack	*next;
