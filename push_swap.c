@@ -6,7 +6,7 @@
 /*   By: kmailleu <kmailleu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 15:09:53 by kenzo             #+#    #+#             */
-/*   Updated: 2024/04/17 18:28:11 by kmailleu         ###   ########.fr       */
+/*   Updated: 2024/04/20 15:35:50 by kmailleu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,7 @@ int	main(int argc, char *argv[])
 		return (0);
 	}
 	nbr_list = parse_input(argc, argv); //check and stock argv in a list
-	if (check_list(nbr_list))
+	if (!check_list(nbr_list))
 	{
 		printf("The input are not correct");
 		return(0);

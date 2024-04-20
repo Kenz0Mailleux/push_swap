@@ -6,7 +6,7 @@
 /*   By: kmailleu <kmailleu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 16:40:03 by kenzo             #+#    #+#             */
-/*   Updated: 2024/04/17 18:10:22 by kmailleu         ###   ########.fr       */
+/*   Updated: 2024/04/20 15:01:07 by kmailleu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ typedef struct s_stack
 char	**parse_input(int argc, char **argv);
 char	**parse_several_input(int argc, char **argv);
 char	**parse_one_input(char *argv);
+int		check_list(char **lst);
 t_stack	*init_stack(char **nbr_list);
 
 t_stack	*ft_get_last(t_stack *lst);
