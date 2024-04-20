@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kenzo <kenzo@student.42.fr>                +#+  +:+       +#+        */
+/*   By: kmailleu <kmailleu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 16:40:03 by kenzo             #+#    #+#             */
-/*   Updated: 2024/04/16 18:11:18 by kenzo            ###   ########.fr       */
+/*   Updated: 2024/04/17 18:10:22 by kmailleu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,20 @@ char	**parse_several_input(int argc, char **argv);
 char	**parse_one_input(char *argv);
 t_stack	*init_stack(char **nbr_list);
 
+t_stack	*ft_get_last(t_stack *lst);
+int		ft_stacksize(t_stack *lst);
 
+int		sa(t_stack *a);
+int		sb(t_stack *b);
+int		ss(t_stack *a, t_stack *b);
 
-int	sa(t_stack *a);
-int	sb(t_stack *b);
-int	ss(t_stack *a, t_stack *b);
+int		pa(t_stack **a, t_stack **b);
+int		pb(t_stack **b, t_stack **a);
 
-int	pa(t_stack *a, t_stack *b);
-
+int		ra(t_stack **stack);
+int		rb(t_stack **stack);
+int		rr(t_stack **a, t_stack **b);
+int		rra(t_stack **stack);
+int		rrb(t_stack **stack);
+int		rrr(t_stack **a, t_stack **b);
 #endif

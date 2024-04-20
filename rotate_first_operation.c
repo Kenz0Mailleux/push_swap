@@ -1,42 +1,53 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_operation.c                                   :+:      :+:    :+:   */
+/*   rotate_first_operation.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kmailleu <kmailleu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/27 14:37:07 by kenzo             #+#    #+#             */
-/*   Updated: 2024/04/17 18:10:47 by kmailleu         ###   ########.fr       */
+/*   Created: 2024/04/17 16:29:24 by kmailleu          #+#    #+#             */
+/*   Updated: 2024/04/17 18:12:43 by kmailleu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	static push(t_stack **from_stack, t_stack **to_stack)
+static int	rotate(t_stack **stack)
 {
-	t_stack	*tmp_node;
+	t_stack *tmp_head;
+	t_stack *last;
 
-	if (from_stack == NULL)
+	if (ft_stacksize(&stack) < 2)
 		return (-1);
-	tmp_node = (*from_stack)->next;
-	(*from_stack)->next = *to_stack;
-	*to_stack = *from_stack;
-	*from_stack = tmp_node;
+	tmp_head = *stack;
+	(*stack) = (*stack)->next;
+	tmp_head->next = NULL;
+	last = ft_get_last(*stack);
+	last->next = tmp_head;
 	return (1);
 }
 
-int	pa(t_stack **a, t_stack **b)
+
+int	ra(t_stack **a)
 {
-	if (push(a, b) == -1)
+	if (rotate(a) == -1)
 		return (-1);
-	ft_putendl_fd("pb", 1);
+	ft_putendl_fd("ra", 1);
 	return (1);
 }
 
-int	pb(t_stack **a, t_stack **b)
+int	rb(t_stack **b)
 {
-	if (push(b, a) == -1)
+	if (rotate(b) == -1)
 		return (-1);
-	ft_putendl_fd("pb", 1);
+	ft_putendl_fd("rb", 1);
+	return (1);
+}
+
+int rr(t_stack **a, t_stack **b)
+{
+	if (rotate(a) == -1 && rotate(b) == -1)
+		return (-1);
+	ft_putendl_fd("rr", 1);
 	return (1);
 }

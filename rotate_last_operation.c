@@ -1,58 +1,55 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   swap_operation.c                                   :+:      :+:    :+:   */
+/*   rotate_last_operation.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kmailleu <kmailleu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/26 16:38:49 by kenzo             #+#    #+#             */
-/*   Updated: 2024/04/17 18:12:11 by kmailleu         ###   ########.fr       */
+/*   Created: 2024/04/17 17:13:27 by kmailleu          #+#    #+#             */
+/*   Updated: 2024/04/17 18:12:12 by kmailleu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static	int swap(t_stack *stack)
+static int	rev_rotate(t_stack **stack)
 {
-	t_stack	*head;
-	t_stack	*next;
-	int		tmp_val;
+	t_stack *tmp_head;
+	t_stack *last;
+	t_stack	*before_last;
 
+	tmp_head = *stack;
 	if (ft_stacksize(stack) < 2)
 		return (-1);
-	head = stack;
-	next = head->next;
-	if (!head && !next)
-		return (-1);
-	tmp_val = head->value;
-	head->value = next->value;
-	next->value = tmp_val;
+	last = ft_get_last(*stack);
+	before_last = last->previous;
+	last->next = tmp_head;
+	before_last->next = NULL;
+	*stack = last;
 	return (1);
 }
 
-int	sa(t_stack *a)
+
+int	rra(t_stack **a)
 {
-	if (swap(a) == -1)
+	if (rev_rotate(a) == -1)
 		return (-1);
-	ft_putendl_fd("sa", 1);
+	ft_putendl_fd("rra", 1);
 	return (1);
 }
 
-
-int	sb(t_stack *b)
+int	rrb(t_stack **b)
 {
-	if (swap(b) == -1)
+	if (rev_rotate(b) == -1)
 		return (-1);
-	ft_putendl_fd("sa", 1);
+	ft_putendl_fd("rrb", 1);
 	return (1);
 }
 
-int	ss(t_stack *a, t_stack *b)
+int rrr(t_stack **a, t_stack **b)
 {
-	if (swap(a) == -1 || swap(b) == -1)
+	if (rev_rotate(a) == -1 && rev_rotate(b) == -1)
 		return (-1);
-	ft_putendl_fd("ss", 1);
+	ft_putendl_fd("rrr", 1);
 	return (1);
 }
-
-

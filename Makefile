@@ -4,6 +4,10 @@ CHECK = checker
 SRCS =  push_operation.c \
 		push_swap.c \
 		swap_operation.c \
+		rotate_first_operation.c \
+		rotate_last_operation.c \
+		utils.c \
+		parse_input.c \
 		
 OBJS = ${SRCS:.c=.o}
 
