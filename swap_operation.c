@@ -3,34 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   swap_operation.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kmailleu <kmailleu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kenzo <kenzo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 16:38:49 by kenzo             #+#    #+#             */
-/*   Updated: 2024/04/17 18:12:11 by kmailleu         ###   ########.fr       */
+/*   Updated: 2024/04/21 01:09:31 by kenzo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static	int swap(t_stack *stack)
+static int	swap(t_stack **stack)
 {
-	t_stack	*head;
-	t_stack	*next;
-	int		tmp_val;
+	t_stack	*tmp;
 
-	if (ft_stacksize(stack) < 2)
+	tmp = (*stack)->next;
+	if (*stack == NULL || (*stack)->next == NULL)
 		return (-1);
-	head = stack;
-	next = head->next;
-	if (!head && !next)
-		return (-1);
-	tmp_val = head->value;
-	head->value = next->value;
-	next->value = tmp_val;
+	(*stack)->next = (*stack)->next->next;
+	tmp->next = *stack;
+	*stack = tmp;
 	return (1);
 }
 
-int	sa(t_stack *a)
+int	sa(t_stack **a)
 {
 	if (swap(a) == -1)
 		return (-1);
@@ -38,8 +33,7 @@ int	sa(t_stack *a)
 	return (1);
 }
 
-
-int	sb(t_stack *b)
+int	sb(t_stack **b)
 {
 	if (swap(b) == -1)
 		return (-1);
@@ -47,12 +41,10 @@ int	sb(t_stack *b)
 	return (1);
 }
 
-int	ss(t_stack *a, t_stack *b)
+int	ss(t_stack **a, t_stack **b)
 {
 	if (swap(a) == -1 || swap(b) == -1)
 		return (-1);
 	ft_putendl_fd("ss", 1);
 	return (1);
 }
-
-

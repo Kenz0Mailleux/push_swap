@@ -3,58 +3,45 @@
 /*                                                        :::      ::::::::   */
 /*   parse_input.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kmailleu <kmailleu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kenzo <kenzo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 18:06:18 by kmailleu          #+#    #+#             */
-/*   Updated: 2024/04/20 17:12:15 by kmailleu         ###   ########.fr       */
+/*   Updated: 2024/04/21 01:02:33 by kenzo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static int	ft_is_digit(int c)
+char	**parse_one_input(char *argv)
 {
-	if (c >= '0' && c <= '9')
-		return (1);
-	return (0);
+	char	**str;
+
+	str = ft_split(argv, ' ');
+	if (str == NULL)
+		return (NULL);
+	return (str);
 }
 
-static int	check_sign(char *int_str)
+char	**parse_several_input(int argc, char **argv)
 {
-	if (int_str[0] == '-' || int_str[0] == '+')
-		return (1);
-	return (0);
+	char	**nbr_list;
+	int		i;
+	int		j;
+
+	i = 1;
+	j = 0;
+	nbr_list = malloc(sizeof(char *) * (argc));
+	if (nbr_list == NULL)
+		return (NULL);
+	while (i < argc)
+		nbr_list[j++] = argv[i++];
+	return (nbr_list);
 }
 
-static int	check_int(char *int_str)
+char	**parse_input(int argc, char **argv)
 {
-	int	i;
-
-	printf("a\n");
-	i = 0;
-	if (check_sign(int_str))
-		i++;
-	while (int_str[i] != NULL)
-	{
-		if (!ft_is_digit(int_str[i]))
-			return (0);
-		i++;
-	}
-	return (1);
-}
-
-int	check_list(char **lst)
-{
-	int	i;
-
-	i = 0;
-	while (lst[i] != NULL)
-	{
-		if (!check_int(lst[i]))
-			return (0);
-		i++;	
-	}
-	return (1);
-	
-		
+	if (argc == 2)
+		return (parse_one_input(argv[1]));
+	else
+		return (parse_several_input(argc, argv));
 }

@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   push_operation.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kmailleu <kmailleu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kenzo <kenzo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 14:37:07 by kenzo             #+#    #+#             */
-/*   Updated: 2024/04/17 18:10:47 by kmailleu         ###   ########.fr       */
+/*   Updated: 2024/04/21 01:09:44 by kenzo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	static push(t_stack **from_stack, t_stack **to_stack)
+static int	push(t_stack **from_stack, t_stack **to_stack)
 {
 	t_stack	*tmp_node;
 
@@ -27,15 +27,15 @@ int	static push(t_stack **from_stack, t_stack **to_stack)
 
 int	pa(t_stack **a, t_stack **b)
 {
-	if (push(a, b) == -1)
+	if (push(b, a) == -1)
 		return (-1);
-	ft_putendl_fd("pb", 1);
+	ft_putendl_fd("pa", 1);
 	return (1);
 }
 
 int	pb(t_stack **a, t_stack **b)
 {
-	if (push(b, a) == -1)
+	if (push(a, b) == -1)
 		return (-1);
 	ft_putendl_fd("pb", 1);
 	return (1);

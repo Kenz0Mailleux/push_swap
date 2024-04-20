@@ -3,112 +3,63 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kmailleu <kmailleu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kenzo <kenzo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 15:09:53 by kenzo             #+#    #+#             */
-/*   Updated: 2024/04/20 15:35:50 by kmailleu         ###   ########.fr       */
+/*   Updated: 2024/04/21 01:03:35 by kenzo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	str_len_ptr(char **nbr_list)
+void	ft_sort(t_stack **stack_a, t_stack **stack_b)
 {
-	int	i;
-
-	i = 0;
-	while(nbr_list[i])
-		i++;
-	return (i);
-}
-
-
-t_stack	*init_stack(char **nbr_list)
-{
-	t_stack *head;
-	t_stack *current;
-	t_stack *node;
-	int i;
-
-	head = NULL;
-	current = NULL;
-	i = str_len_ptr(nbr_list)-1;
-	while (i > -1)
-	{
-		node = malloc(sizeof(t_stack));
-		if (node == NULL)
-			return NULL;
-		node->value = ft_atoi(nbr_list[i]);
-		node->index = i;
-		node->next = NULL;
-		node->previous = NULL;
-		if (head == NULL)
-			head = node;
-		else
-		{
-			current->next = node;
-			node->previous = current;
-		}
-		current = node;
-		i--;
-	}
-	return (head);
-}
-
-
-
-char	**parse_one_input(char *argv)
-{
-	char	**str;
-	str = ft_split(argv, ' ');
-
-	if (str == NULL)
-		return (NULL);
-	//tri splited
-	return (str);
-}
-
-char	**parse_several_input(int argc, char **argv)
-{
-	char		**nbr_list;
-	int		i;
-	int		j;
-	i = 1;
-	j = 0;
-
-	nbr_list = malloc(sizeof(char *) * (argc + 1)); //argc n'a pas besoin de +1
-	if (nbr_list == NULL)
-	 	return (NULL);
-	while (i < argc)
-		nbr_list[j++] = argv[i++];
-	return (nbr_list);
-	
-}
-
-// int	check_input(int argc, char **argv)
-// {
-// 	argc = 0;
-// 	argv = NULL;
-// 	return (0);
-// }
-
-char	**parse_input(int argc, char **argv)
-{
-	// if	(!check_input(argc, argv))
-	// 	return (NULL);
-	printf("nbr of input : %d \n", argc);
-	if (argc == 2)
-		return (parse_one_input(argv[1]));
+	if (ft_check_if_sorted(*stack_a) == 1)
+		return ;
+	else if (ft_stacksize(*stack_a) == 1)
+		return ;
+	else if (ft_stacksize(*stack_a) == 2)
+		sort_two(stack_a);
+	else if (ft_stacksize(*stack_a) == 3)
+		sort_three(stack_a);
+	else if (ft_stacksize(*stack_a) <= 5)
+		sort_four_five(stack_a, stack_b);
 	else
-		return (parse_several_input(argc, argv));
+		ft_sort_big_list(stack_a, stack_b);
 }
 
+void	ft_put_index(t_stack **first_node, int size)
+{
+	t_stack	*smallest_node;
+	t_stack	*tmp;
+	int		index;
+	int		smallest;
 
+	index = 0;
+	tmp = *first_node;
+	while (index < size)
+	{
+		smallest = 2147483647;
+		tmp = *first_node;
+		while (tmp != NULL)
+		{
+			if (tmp->value < smallest && tmp->has_index == 0)
+			{
+				smallest_node = tmp;
+				smallest = tmp->value;
+			}
+			tmp = tmp->next;
+		}
+		smallest_node->index = index;
+		smallest_node->has_index = 1;
+		index++;
+	}
+}
 
 int	main(int argc, char *argv[])
 {
-	t_stack *a;
-	t_stack *b;
+	t_stack	*a;
+	t_stack	*b;
 	char	**nbr_list;
 
 	if (argc < 2)
@@ -116,17 +67,19 @@ int	main(int argc, char *argv[])
 		printf("need at least one nbr");
 		return (0);
 	}
-	nbr_list = parse_input(argc, argv); //check and stock argv in a list
+	nbr_list = parse_input(argc, argv);
 	if (!check_list(nbr_list))
 	{
 		printf("The input are not correct");
-		return(0);
+		return (0);
 	}
 	if (nbr_list == NULL)
 		return (0);
 	a = init_stack(nbr_list);
 	b = malloc(sizeof(t_stack));
 	b = NULL;
+	ft_put_index(&a, ft_stacksize(a));
+	ft_sort(&a, &b);
 	printf("Stack A \n");
 	while (a != NULL)
 	{
@@ -136,7 +89,7 @@ int	main(int argc, char *argv[])
 	printf("\nStack B \n");
 	while (b != NULL)
 	{
-	printf("%d \n", b->value);
+		printf("%d \n", b->value);
 		b = b->next;
 	}
 }

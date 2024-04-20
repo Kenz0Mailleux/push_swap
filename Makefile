@@ -8,6 +8,9 @@ SRCS =  push_operation.c \
 		rotate_last_operation.c \
 		utils.c \
 		parse_input.c \
+		sort_small_stack.c \
+		init_stack.c \
+		check_valid.c \
 		
 OBJS = ${SRCS:.c=.o}
 
