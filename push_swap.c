@@ -6,15 +6,29 @@
 /*   By: kenzo <kenzo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 15:09:53 by kenzo             #+#    #+#             */
-/*   Updated: 2024/04/21 01:03:35 by kenzo            ###   ########.fr       */
+/*   Updated: 2024/04/22 18:51:19 by kenzo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+void	stack_free(t_stack *stack)
+{
+	t_stack *tmp_stack;
+	
+	if (stack == NULL)
+		return ;
+	while (stack)
+	{
+		tmp_stack = stack;
+		stack = stack->next;
+		free(tmp_stack);
+	}
+}
+
 void	ft_sort(t_stack **stack_a, t_stack **stack_b)
 {
-	if (ft_check_if_sorted(*stack_a) == 1)
+	if (check_if_sorted(*stack_a) == 1)
 		return ;
 	else if (ft_stacksize(*stack_a) == 1)
 		return ;
@@ -25,7 +39,7 @@ void	ft_sort(t_stack **stack_a, t_stack **stack_b)
 	else if (ft_stacksize(*stack_a) <= 5)
 		sort_four_five(stack_a, stack_b);
 	else
-		ft_sort_big_list(stack_a, stack_b);
+		sort_big_list(stack_a, stack_b);
 }
 
 void	ft_put_index(t_stack **first_node, int size)
@@ -56,11 +70,25 @@ void	ft_put_index(t_stack **first_node, int size)
 	}
 }
 
+void	free_lst(char **nbr_lst)
+{
+	int	i;
+
+	i = 0;
+	while (nbr_lst[i])
+	{
+		free(nbr_lst[i]);
+		i++;
+	}
+	free(nbr_lst);
+}
+
 int	main(int argc, char *argv[])
 {
 	t_stack	*a;
 	t_stack	*b;
 	char	**nbr_list;
+	
 
 	if (argc < 2)
 	{
@@ -75,21 +103,18 @@ int	main(int argc, char *argv[])
 	}
 	if (nbr_list == NULL)
 		return (0);
-	a = init_stack(nbr_list);
-	b = malloc(sizeof(t_stack));
 	b = NULL;
+	a = init_stack(nbr_list);
+	if (a == 0)
+	{
+		free_lst(nbr_list);
+		stack_free(a);
+		stack_free(b);
+		return (1);
+	}	
 	ft_put_index(&a, ft_stacksize(a));
 	ft_sort(&a, &b);
-	printf("Stack A \n");
-	while (a != NULL)
-	{
-		printf("%d \n", a->value);
-		a = a->next;
-	}
-	printf("\nStack B \n");
-	while (b != NULL)
-	{
-		printf("%d \n", b->value);
-		b = b->next;
-	}
+	free_lst(nbr_list);
+	stack_free(a);
+	stack_free(b);
 }

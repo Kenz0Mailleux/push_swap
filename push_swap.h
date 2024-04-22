@@ -6,7 +6,7 @@
 /*   By: kenzo <kenzo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 16:40:03 by kenzo             #+#    #+#             */
-/*   Updated: 2024/04/21 01:08:01 by kenzo            ###   ########.fr       */
+/*   Updated: 2024/04/21 12:16:46 by kenzo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ char	**parse_several_input(int argc, char **argv);
 char	**parse_one_input(char *argv);
 int		check_list(char **lst);
 t_stack	*init_stack(char **nbr_list);
+void	free_lst(char **nbr_lst);
 
 t_stack	*ft_get_last(t_stack *lst);
 int		ft_stacksize(t_stack *lst);
@@ -53,7 +54,7 @@ void	sort_two(t_stack **stack_a);
 void	sort_three(t_stack **stack_a);
 void	sort_four_five(t_stack **stack_a, t_stack **stack_b);
 int		get_rotate_direction(t_stack *first_node);
-int		ft_check_if_sorted(t_stack *stack_a);
-void	ft_sort_big_list(t_stack **stack_a, t_stack **stack_b);
+int		check_if_sorted(t_stack *stack_a);
+void	sort_big_list(t_stack **stack_a, t_stack **stack_b);
 
 #endif

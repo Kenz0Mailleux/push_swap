@@ -6,7 +6,7 @@
 /*   By: kenzo <kenzo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 23:04:12 by kenzo             #+#    #+#             */
-/*   Updated: 2024/04/21 01:10:41 by kenzo            ###   ########.fr       */
+/*   Updated: 2024/04/21 11:32:41 by kenzo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	sort_two(t_stack **stack_a)
 
 void	sort_three(t_stack **stack_a)
 {
-	while (!ft_check_if_sorted(*stack_a))
+	while (!check_if_sorted(*stack_a))
 	{
 		if ((*stack_a)->value > (*stack_a)->next->value)
 			sa(stack_a);
@@ -53,7 +53,7 @@ void	sort_four_five(t_stack **stack_a, t_stack **stack_b)
 	}
 }
 
-int	get_rotate_direction(t_stack *first_node)
+int	get_rotate_direction(t_stack *stack)
 {
 	int	smallest;
 	int	index;
@@ -63,15 +63,15 @@ int	get_rotate_direction(t_stack *first_node)
 	index = 0;
 	smallest_index = 0;
 	smallest = 2147483647;
-	list_size = ft_stacksize(first_node) / 2;
-	while (first_node)
+	list_size = ft_stacksize(stack) / 2;
+	while (stack)
 	{
-		if (first_node->value < smallest)
+		if (stack->value < smallest)
 		{
-			smallest = first_node->value;
+			smallest = stack->value;
 			smallest_index = index;
 		}
-		first_node = first_node->next;
+		stack = stack->next;
 		index++;
 	}
 	if (smallest_index < list_size)
@@ -80,7 +80,7 @@ int	get_rotate_direction(t_stack *first_node)
 		return (-1);
 }
 
-void	ft_sort_big_list(t_stack **stack_a, t_stack **stack_b)
+void	sort_big_list(t_stack **stack_a, t_stack **stack_b)
 {
 	int	bit_pos;
 	int	size;

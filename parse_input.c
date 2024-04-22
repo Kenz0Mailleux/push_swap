@@ -6,11 +6,12 @@
 /*   By: kenzo <kenzo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 18:06:18 by kmailleu          #+#    #+#             */
-/*   Updated: 2024/04/21 01:02:33 by kenzo            ###   ########.fr       */
+/*   Updated: 2024/04/22 18:39:39 by kenzo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
 
 char	**parse_one_input(char *argv)
 {
@@ -22,6 +23,26 @@ char	**parse_one_input(char *argv)
 	return (str);
 }
 
+char	*ft_strcpy(char *src)
+{
+	int		i;
+	int		n;
+	char	*dest;
+
+	n = ft_strlen(src);
+	dest = malloc(sizeof(char) * (n + 1));
+	if (!dest || !src)
+		return (NULL);
+	i = 0;
+	while (i < n && src[i] != '\0')
+	{
+		dest[i] = src[i];
+		i++;
+	}
+	dest[i] = '\0';
+	return (dest);
+}
+
 char	**parse_several_input(int argc, char **argv)
 {
 	char	**nbr_list;
@@ -30,11 +51,19 @@ char	**parse_several_input(int argc, char **argv)
 
 	i = 1;
 	j = 0;
-	nbr_list = malloc(sizeof(char *) * (argc));
+	nbr_list = malloc(sizeof(char *) * (argc + 1));
 	if (nbr_list == NULL)
 		return (NULL);
 	while (i < argc)
-		nbr_list[j++] = argv[i++];
+	{
+		nbr_list[j] = ft_strcpy(argv[i++]);
+		if (!nbr_list[j++])
+		{
+			free_lst(nbr_list);
+			return (NULL);
+		}
+	}
+	nbr_list[j] = NULL;
 	return (nbr_list);
 }
 

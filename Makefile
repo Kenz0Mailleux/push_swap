@@ -15,7 +15,7 @@ SRCS =  push_operation.c \
 OBJS = ${SRCS:.c=.o}
 
 CC = gcc
-CFLAGS = -Wall -Wextra #-Werror -Iincludes
+CFLAGS = -Wall -Wextra -Werror -fsanitize=address -g -Iincludes
 
 RM = rm -rf
 
