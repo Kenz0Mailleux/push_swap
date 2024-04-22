@@ -6,7 +6,7 @@
 /*   By: kenzo <kenzo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 00:57:16 by kenzo             #+#    #+#             */
-/*   Updated: 2024/04/22 18:39:35 by kenzo            ###   ########.fr       */
+/*   Updated: 2024/04/22 19:14:35 by kenzo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,7 @@ t_stack	*init_stack(char **nbr_list)
 		if (node == NULL)
 			return (NULL);
 		if (ft_atoi(nbr_list[i]) >= 2147483647 || ft_atoi(nbr_list[i]) <= -2147483648)
-		{
-			free(node);
 			return (NULL);
-		}
 		node->value = (int)(ft_atoi(nbr_list[i]));
 		node->index = i;
 		node->next = NULL;

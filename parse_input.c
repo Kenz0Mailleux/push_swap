@@ -6,7 +6,7 @@
 /*   By: kenzo <kenzo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 18:06:18 by kmailleu          #+#    #+#             */
-/*   Updated: 2024/04/22 18:39:39 by kenzo            ###   ########.fr       */
+/*   Updated: 2024/04/22 19:11:17 by kenzo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,8 @@ char	**parse_several_input(int argc, char **argv)
 	while (i < argc)
 	{
 		nbr_list[j] = ft_strcpy(argv[i++]);
+		if (nbr_list[j] == NULL)
+			return (NULL);
 		if (!nbr_list[j++])
 		{
 			free_lst(nbr_list);

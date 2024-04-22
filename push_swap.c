@@ -6,7 +6,7 @@
 /*   By: kenzo <kenzo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 15:09:53 by kenzo             #+#    #+#             */
-/*   Updated: 2024/04/22 18:51:19 by kenzo            ###   ########.fr       */
+/*   Updated: 2024/04/22 19:16:17 by kenzo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,6 @@ int	main(int argc, char *argv[])
 	t_stack	*a;
 	t_stack	*b;
 	char	**nbr_list;
-	
 
 	if (argc < 2)
 	{
@@ -96,8 +95,11 @@ int	main(int argc, char *argv[])
 		return (0);
 	}
 	nbr_list = parse_input(argc, argv);
+	if (nbr_list == NULL)
+		return (0);
 	if (!check_list(nbr_list))
 	{
+		free_lst(nbr_list);
 		printf("The input are not correct");
 		return (0);
 	}
