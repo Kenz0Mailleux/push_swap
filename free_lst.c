@@ -1,25 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstnew_bonus.c                                  :+:      :+:    :+:   */
+/*   free_lst.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kenzo <kenzo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/23 15:09:21 by kmailleu          #+#    #+#             */
-/*   Updated: 2024/07/16 15:18:07 by kenzo            ###   ########.fr       */
+/*   Created: 2024/07/22 19:39:43 by kenzo             #+#    #+#             */
+/*   Updated: 2024/07/22 20:22:41 by kenzo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "push_swap.h"
 
-t_list	*ft_lstnew(int content)
+void	stack_free(t_list *lst)
 {
-	t_list	*new;
+	t_list	*tmp_lst;
 
-	new = malloc(sizeof(t_list));
-	if (new == NULL)
-		return (NULL);
-	new->content = content;
-	new->next = NULL;
-	return (new);
+	if (lst == NULL)
+		return ;
+	while (lst)
+	{
+		tmp_lst = lst;
+		lst = lst->next;
+		free(tmp_lst);
+	}
+}
+
+void	free_all(int free_nb, char **nbr_lst)
+{
+	int	i;
+
+	i = 0;
+	if (free_nb)
+	{
+		while (nbr_lst[i])
+			free(nbr_lst[i++]);
+		free(nbr_lst);
+	}
+	// stack_free(tab->stack_a);
+	// stack_free(tab->stack_b);
+	//free(tab);
 }

@@ -1,25 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstnew_bonus.c                                  :+:      :+:    :+:   */
+/*   operation_push.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kenzo <kenzo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/23 15:09:21 by kmailleu          #+#    #+#             */
-/*   Updated: 2024/07/16 15:18:07 by kenzo            ###   ########.fr       */
+/*   Created: 2024/03/27 14:37:07 by kenzo             #+#    #+#             */
+/*   Updated: 2024/07/22 20:23:40 by kenzo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "push_swap.h"
 
-t_list	*ft_lstnew(int content)
+void	push(t_list **stack1, t_list **stack2)
 {
-	t_list	*new;
+	t_list	*push_b;
 
-	new = malloc(sizeof(t_list));
-	if (new == NULL)
-		return (NULL);
-	new->content = content;
-	new->next = NULL;
-	return (new);
+	if (!*stack2)
+		return ;
+	push_b = (*stack2)->next;
+	(*stack2)->next = *stack1;
+	*stack1 = *stack2;
+	*stack2 = push_b;
+}
+
+void	pa(t_list **stack1, t_list **stack2)
+{
+	push(stack1, stack2);
+	ft_putstr_fd("pa\n", 1);
+}
+
+void	pb(t_list **stack1, t_list **stack2)
+{
+	push(stack2, stack1);
+	ft_putstr_fd("pb\n", 1);
 }

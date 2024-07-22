@@ -5,44 +5,74 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: kenzo <kenzo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/21 00:57:16 by kenzo             #+#    #+#             */
-/*   Updated: 2024/04/22 19:14:35 by kenzo            ###   ########.fr       */
+/*   Created: 2024/07/16 14:34:24 by kenzo             #+#    #+#             */
+/*   Updated: 2024/07/22 20:23:33 by kenzo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_stack	*init_stack(char **nbr_list)
+static int	min_value(t_list *lst)
 {
-	t_stack	*head;
-	t_stack	*current;
-	t_stack	*node;
-	int		i;
+	long int	min_value;
+	t_list		*current;
 
-	head = NULL;
-	current = NULL;
-	i = 0;
-	while (nbr_list[i])
+	current = lst;
+	min_value = LONG_MAX;
+	while (current != NULL)
 	{
-		node = malloc(sizeof(t_stack));
-		if (node == NULL)
-			return (NULL);
-		if (ft_atoi(nbr_list[i]) >= 2147483647 || ft_atoi(nbr_list[i]) <= -2147483648)
-			return (NULL);
-		node->value = (int)(ft_atoi(nbr_list[i]));
-		node->index = i;
-		node->next = NULL;
-		node->has_index = 0;
-		node->previous = NULL;
-		if (head == NULL)
-			head = node;
-		else
+		if (current->index == -1 && current->content < min_value)
+			min_value = current->content;
+		current = current->next;
+	}
+	return (min_value);
+}
+
+void	add_index(t_list *lst)
+{
+	int		len;
+	int		min;
+	int		i;
+	t_list	*tmp;
+
+	i = 0;
+	len = ft_lstsize(lst);
+	while (i < len)
+	{
+		min = min_value(lst);
+		tmp = lst;
+		while (tmp)
 		{
-			current->next = node;
-			node->previous = current;
+			if (tmp->index == -1 && tmp->content == min)
+				break ;
+			tmp = tmp->next;
 		}
-		current = node;
+		tmp->index = i;
 		i++;
 	}
-	return (head);
+}
+
+t_list	*ft_init(char **agrv, int argc)
+{
+	t_list	*current_elem;
+	t_list	*list_head;
+	int		i;
+	long	number;
+
+	i = 1;
+	if (argc == 2)
+		i = 0;
+	list_head = NULL;
+	while (agrv[i])
+	{
+		number = ft_atoi(agrv[i]);
+		if (number > INT_MAX || number < INT_MIN || \
+			ft_check(list_head, number, agrv[i]) == 0)
+			return (ft_putstr_fd("Error\n", 2), NULL);
+		current_elem = ft_lstnew(number);
+		ft_lstadd_back(&list_head, current_elem);
+		current_elem->index = -1;
+		i++;
+	}
+	return (list_head);
 }

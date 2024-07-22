@@ -5,67 +5,81 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: kenzo <kenzo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/17 17:08:03 by kmailleu          #+#    #+#             */
-/*   Updated: 2024/04/21 11:31:10 by kenzo            ###   ########.fr       */
+/*   Created: 2024/07/16 15:46:21 by kenzo             #+#    #+#             */
+/*   Updated: 2024/07/22 20:20:25 by kenzo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_stack	*ft_get_last(t_stack *lst)
+t_list	*find_min(t_list **stack)
 {
-	while (lst != NULL && lst->next != NULL)
+	t_list	*min;
+	t_list	*current;
+
+	min = *stack;
+	current = *stack;
+	while (current)
 	{
-		lst = lst->next;
+		if (current->content < min->content)
+			min = current;
+		current = current->next;
 	}
-	return (lst);
+	return (min);
 }
 
-int	ft_stacksize(t_stack *lst)
+t_list	*find_max(t_list **stack)
+{
+	t_list	*max;
+	t_list	*current;
+
+	max = *stack;
+	current = *stack;
+	while (current)
+	{
+		if (current->content > max->content)
+			max = current;
+		current = current->next;
+	}
+	return (max);
+}
+
+int	check_sorted(t_list **stack1)
+{
+	t_list	*current;
+
+	current = *stack1;
+	while (current && current->next)
+	{
+		if (current->content > current->next->content)
+			return (0);
+		current = current->next;
+	}
+	return (1);
+}
+
+int	a_sorted(t_list **stack1, int count)
 {
 	int	size;
 
-	size = 0;
-	while (lst != NULL)
+	size = ft_lstsize(*stack1);
+	if (size != count)
+		return (0);
+	if (!check_sorted(stack1))
+		return (0);
+	return (1);
+}
+
+int	is_sort(t_swap *tab)
+{
+	t_list	*current;
+
+	current = tab->stack_a;
+	while (current && current->next)
 	{
-		lst = lst->next;
-		size++;
+		if (current->content < current->next->content)
+			return (0);
+		current = current->next;
 	}
-	return (size);
-}
-
-int	ft_strcmp(char *s1, char *s2)
-{
-	int	i;
-
-	i = 0;
-	if (ft_strlen(s1) != ft_strlen(s2))
-		return (1);
-	while (s1[i] != '\0' && s2[i] != '\0' && s1[i] == s2[i])
-		i++;
-	return (s1[i] - s2[i]);
-}
-
-int	check_if_sorted(t_stack *stack)
-{
-	while (stack->next != NULL && stack->value < stack->next->value)
-		stack = stack->next;
-	if (stack->next == NULL)
-		return (1);
-	return (0);
-}
-
-int	smallest_number(t_stack *stack)
-{
-	int	smallest;
-
-	smallest = stack->value;
-	stack = stack->next;
-	while (stack != NULL)
-	{
-		if (stack->value < smallest)
-			smallest = stack->value;
-		stack = stack->next;
-	}
-	return (smallest);
+	return (1);
 }

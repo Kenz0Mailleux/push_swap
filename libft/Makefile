@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: kmailleu <kmailleu@student.42.fr>          +#+  +:+       +#+         #
+#    By: kenzo <kenzo@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/09 14:09:22 by kmailleu          #+#    #+#              #
-#    Updated: 2024/04/02 17:23:58 by kmailleu         ###   ########.fr        #
+#    Updated: 2024/07/16 15:30:04 by kenzo            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,10 +50,6 @@ BONUS =	ft_lstnew_bonus.c \
 		ft_lstsize_bonus.c \
 		ft_lstlast_bonus.c \
 		ft_lstadd_back_bonus.c \
-		ft_lstdelone_bonus.c \
-		ft_lstclear_bonus.c \
-		ft_lstiter_bonus.c \
-		ft_lstmap_bonus.c \
 		
 		
 	

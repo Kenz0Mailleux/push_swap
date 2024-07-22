@@ -1,21 +1,22 @@
 NAME = push_swap
 CHECK = checker
 
-SRCS =  push_operation.c \
-		push_swap.c \
-		swap_operation.c \
-		rotate_first_operation.c \
-		rotate_last_operation.c \
-		utils.c \
-		parse_input.c \
-		sort_small_stack.c \
+SRCS =  algo.c \
+		free_lst.c \
 		init_stack.c \
-		check_valid.c \
+		parse.c \
+		push_swap.c \
+		operation_push.c \
+		operation_swap.c \
+		operation_rotate_first.c \
+		operation_rotate_last.c \
+		sort.c \
+		utils.c \
 		
 OBJS = ${SRCS:.c=.o}
 
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -fsanitize=address -g -Iincludes
+CFLAGS = -Wall -Wextra -Werror -Iincludes
 
 RM = rm -rf
 
