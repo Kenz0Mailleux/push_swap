@@ -6,13 +6,13 @@
 /*   By: kenzo <kenzo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 19:39:43 by kenzo             #+#    #+#             */
-/*   Updated: 2024/07/22 20:22:41 by kenzo            ###   ########.fr       */
+/*   Updated: 2024/07/27 17:58:15 by kenzo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	stack_free(t_list *lst)
+static void	stack_free(t_list *lst)
 {
 	t_list	*tmp_lst;
 
@@ -26,7 +26,7 @@ void	stack_free(t_list *lst)
 	}
 }
 
-void	free_all(int free_nb, char **nbr_lst)
+void	free_all(int free_nb, char **nbr_lst, t_swap *tab)
 {
 	int	i;
 
@@ -37,7 +37,7 @@ void	free_all(int free_nb, char **nbr_lst)
 			free(nbr_lst[i++]);
 		free(nbr_lst);
 	}
-	// stack_free(tab->stack_a);
-	// stack_free(tab->stack_b);
-	//free(tab);
+	stack_free(tab->stack_a);
+	stack_free(tab->stack_b);
+	free(tab);
 }

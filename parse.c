@@ -6,13 +6,13 @@
 /*   By: kenzo <kenzo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 19:41:08 by kenzo             #+#    #+#             */
-/*   Updated: 2024/07/22 19:41:31 by kenzo            ###   ########.fr       */
+/*   Updated: 2024/07/27 17:59:04 by kenzo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static int	is_valid_number(char *number_str)
+static int	ft_is_valid_number(char *number_str)
 {
 	int	i;
 
@@ -29,8 +29,7 @@ static int	is_valid_number(char *number_str)
 	return (1);
 }
 
-// Function to check if a number is unique in the list
-static int	is_unique_number(t_list *list, int number)
+static int	ft_is_unique_number(t_list *list, int number)
 {
 	t_list	*current;
 
@@ -44,12 +43,11 @@ static int	is_unique_number(t_list *list, int number)
 	return (1);
 }
 
-// Function to check both validity of the number string and uniqueness in the list
 int	ft_check(t_list *list, int number, char *number_str)
 {
-	if (!is_valid_number(number_str))
+	if (!ft_is_valid_number(number_str))
 		return (0);
-	if (!is_unique_number(list, number))
+	if (!ft_is_unique_number(list, number))
 		return (0);
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: kenzo <kenzo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 16:40:03 by kenzo             #+#    #+#             */
-/*   Updated: 2024/07/22 20:24:36 by kenzo            ###   ########.fr       */
+/*   Updated: 2024/07/27 17:48:50 by kenzo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,27 +35,27 @@ typedef struct s_swap
 }		t_swap;
 
 void	check_sort(t_swap	*tab);
-int		check_sorted(t_list **stack1);
-int		a_sorted(t_list **stack1, int count);
+int		check_sorted(t_list **stack_a);
+int		a_sorted(t_list **stack_a, int count);
 t_list	*find_min(t_list **stack);
 t_list	*find_max(t_list **stack);
 int		is_sort(t_swap	*tab);
 
 t_list	*ft_init(char **agrv, int argc);
 int		ft_check(t_list *list, int number, char *number_str);
-void	free_all(int free_nb, char **nbr_lst);
+void	free_all(int free_nb, char **nbr_lst, t_swap *tab);
 
-void	pa(t_list **stack1, t_list **stack2);
-void	pb(t_list **stack1, t_list **stack2);
-void	ra(t_list **stack1);
-void	rb(t_list **stack2);
-void	rr(t_list **stack1, t_list **stack2);
-void	sa(t_list **stack1);
-void	sb(t_list **stack2);
-void	ss(t_list **stack1, t_list **stack2);
-void	rrb(t_list **stack2);
-void	rra(t_list **stack1);
+void	pa(t_list **stack_a, t_list **stack_b);
+void	pb(t_list **stack_a, t_list **stack_b);
+void	ra(t_list **stack_a);
+void	rb(t_list **stack_b);
+void	rr(t_list **stack_a, t_list **stack_b);
+void	sa(t_list **stack_a);
+void	sb(t_list **stack_b);
+void	ss(t_list **stack_a, t_list **stack_b);
+void	rrb(t_list **stack_b);
+void	rra(t_list **stack_a);
 
 void	add_index(t_list *lst);
-void	quick_sort(t_list **stack1, t_list **stack2, int count);
+void	quick_sort(t_list **stack_a, t_list **stack_b, int count);
 #endif

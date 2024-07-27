@@ -6,7 +6,7 @@
 /*   By: kenzo <kenzo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 17:13:27 by kmailleu          #+#    #+#             */
-/*   Updated: 2024/07/22 20:10:40 by kenzo            ###   ########.fr       */
+/*   Updated: 2024/07/27 17:48:50 by kenzo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,14 @@ static void	reverse_rotate(t_list **stack)
 	*stack = end;
 }
 
-void	rra(t_list **stack1)
+void	rra(t_list **stack_a)
 {
-	reverse_rotate(stack1);
+	reverse_rotate(stack_a);
 	write(1, "rra\n", 4);
 }
 
-void	rrb(t_list **stack2)
+void	rrb(t_list **stack_b)
 {
-	reverse_rotate(stack2);
+	reverse_rotate(stack_b);
 	write(1, "rrb\n", 4);
 }

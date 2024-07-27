@@ -6,7 +6,7 @@
 /*   By: kenzo <kenzo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 15:46:21 by kenzo             #+#    #+#             */
-/*   Updated: 2024/07/22 20:20:25 by kenzo            ###   ########.fr       */
+/*   Updated: 2024/07/27 17:48:38 by kenzo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,11 @@ t_list	*find_max(t_list **stack)
 	return (max);
 }
 
-int	check_sorted(t_list **stack1)
+int	check_sorted(t_list **stack_a)
 {
 	t_list	*current;
 
-	current = *stack1;
+	current = *stack_a;
 	while (current && current->next)
 	{
 		if (current->content > current->next->content)
@@ -58,14 +58,14 @@ int	check_sorted(t_list **stack1)
 	return (1);
 }
 
-int	a_sorted(t_list **stack1, int count)
+int	a_sorted(t_list **stack_a, int count)
 {
 	int	size;
 
-	size = ft_lstsize(*stack1);
+	size = ft_lstsize(*stack_a);
 	if (size != count)
 		return (0);
-	if (!check_sorted(stack1))
+	if (!check_sorted(stack_a))
 		return (0);
 	return (1);
 }
