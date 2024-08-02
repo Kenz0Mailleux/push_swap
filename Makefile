@@ -15,8 +15,8 @@ SRCS =  algo.c \
 		
 OBJS = ${SRCS:.c=.o}
 
-CC = gcc
-CFLAGS = -Wall -Wextra -Werror -Iincludes
+CC = cc
+CFLAGS = -Wall -Wextra -Werror
 
 RM = rm -rf
 

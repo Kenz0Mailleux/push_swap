@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kenzo <kenzo@student.42.fr>                +#+  +:+       +#+        */
+/*   By: kmailleu <kmailleu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 16:40:03 by kenzo             #+#    #+#             */
-/*   Updated: 2024/07/27 17:48:50 by kenzo            ###   ########.fr       */
+/*   Updated: 2024/08/02 14:31:26 by kmailleu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # define LONG_MAX 1000
 # include <limits.h>
 # include "libft/libft.h"
+# include <stdio.h>
 
 typedef struct s_push
 {
@@ -43,7 +44,8 @@ int		is_sort(t_swap	*tab);
 
 t_list	*ft_init(char **agrv, int argc);
 int		ft_check(t_list *list, int number, char *number_str);
-void	free_all(int free_nb, char **nbr_lst, t_swap *tab);
+void	free_all(int free_nb, char **nbr_lst);
+void	stack_free(t_list *lst);
 
 void	pa(t_list **stack_a, t_list **stack_b);
 void	pb(t_list **stack_a, t_list **stack_b);

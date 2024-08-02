@@ -3,17 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   algo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kenzo <kenzo@student.42.fr>                +#+  +:+       +#+        */
+/*   By: kmailleu <kmailleu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 16:44:22 by kenzo             #+#    #+#             */
-/*   Updated: 2024/07/27 17:58:34 by kenzo            ###   ########.fr       */
+/*   Updated: 2024/08/02 16:46:57 by kmailleu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
 // Fonction de tri initiale des éléments de stack_a vers stack_b
-static void	init_sort(t_list **stack_a, t_list **stack_b, t_push *push, int count)
+static void	init_sort(t_list **stack_a, t_list **stack_b, \
+			t_push *push, int count)
 {
 	int		idx;
 
@@ -36,7 +37,7 @@ static void	init_sort(t_list **stack_a, t_list **stack_b, t_push *push, int coun
 	push->flag++;
 }
 
-// Trouve et déplace l'élément suivant à la bonne position
+// Trouve et déplace l'élément next à la bonne position
 static void	find_next(t_list **stack_a, t_list **stack_b, t_push *push)
 {
 	while (1)
@@ -49,11 +50,13 @@ static void	find_next(t_list **stack_a, t_list **stack_b, t_push *push)
 			ra(stack_a);
 			push->next++;
 		}
-		else if (ft_lstsize((*stack_b)) > 2 && ft_lstlast((*stack_b))->index == push->next)
+		else if (ft_lstsize((*stack_b)) > 2 && \
+				ft_lstlast((*stack_b))->index == push->next)
 			rrb(stack_b);
 		else if ((*stack_a)->next->index == push->next)
 			sa(stack_a);
-		else if (ft_lstsize((*stack_a)) > 1 && ((*stack_a)->next->index == push->next)
+		else if (ft_lstsize((*stack_a)) > 1 && \
+				((*stack_a)->next->index == push->next)
 			&& ((*stack_b)->next->index == push->next + 1))
 			ss(stack_a, stack_b);
 		else
@@ -87,7 +90,8 @@ static void	sort_a(t_list **stack_a, t_list **stack_b, t_push *push)
 	push->flag++;
 }
 
-// Partitionne les éléments de stack_a vers stack_b et les trie en fonction des flags
+// Partitionne les éléments de stack_a vers stack_b et \
+les trie en fonction des flags
 static void	sort_b(t_list **stack_a, t_list **stack_b, t_push *push)
 {
 	int		curr_flag;
@@ -105,7 +109,6 @@ static void	sort_b(t_list **stack_a, t_list **stack_b, t_push *push)
 	push->mid = (push->max - push->next) / 2 + push->next;
 }
 
-// Fonction principale de tri rapide des stacks
 void	quick_sort(t_list **stack_a, t_list **stack_b, int count)
 {
 	t_push	push;

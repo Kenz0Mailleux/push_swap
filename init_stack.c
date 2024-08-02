@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_stack.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kenzo <kenzo@student.42.fr>                +#+  +:+       +#+        */
+/*   By: kmailleu <kmailleu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 14:34:24 by kenzo             #+#    #+#             */
-/*   Updated: 2024/07/27 16:32:27 by kenzo            ###   ########.fr       */
+/*   Updated: 2024/08/02 16:42:25 by kmailleu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,11 +68,12 @@ t_list	*ft_init(char **agrv, int argc)
 		number = ft_atoi(agrv[i]);
 		if (number > INT_MAX || number < INT_MIN || \
 			ft_check(list_head, number, agrv[i]) == 0)
-			return (ft_putstr_fd("Error\n", 2), NULL);
+			return (free_all(0, agrv), ft_putstr_fd("Error\n", 2), NULL);
 		current_elem = ft_lstnew(number);
 		ft_lstadd_back(&list_head, current_elem);
 		current_elem->index = -1;
 		i++;
 	}
+	free_all(0, agrv);
 	return (list_head);
 }

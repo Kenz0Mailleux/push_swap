@@ -6,7 +6,7 @@
 /*   By: kmailleu <kmailleu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 16:27:46 by kenzo             #+#    #+#             */
-/*   Updated: 2024/02/06 17:50:07 by kmailleu         ###   ########.fr       */
+/*   Updated: 2024/08/01 16:22:59 by kmailleu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	sign_space(const char *str, int *ptr_len)
 	return (sign);
 }
 
-int	ft_atoi(const char *str)
+long	ft_atoi(const char *str)
 {
 	int					sign;
 	unsigned long int	result;
@@ -53,10 +53,10 @@ int	ft_atoi(const char *str)
 		if (result > (unsigned)LONG_MAX)
 		{
 			if (sign > 0)
-				return (-1);
+				return (21474836471);
 			if (sign < 0)
-				return (0);
+				return (21474836471);
 		}
 	}
-	return ((int)result * sign);
+	return ((long)result * sign);
 }
